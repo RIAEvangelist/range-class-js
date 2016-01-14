@@ -1,0 +1,32 @@
+{
+  "name": "js-range",
+  "version": "1.0.0",
+  "description": "Javascript Range min, max, and step validation",
+  "main": "Range.js",
+  "dependencies": {},
+  "devDependencies": {
+        "istanbul": "^0.4.2",
+        "jasmine": "^2.4.1"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RIAEvangelist/js-range.git"
+  },
+  "keywords": [
+    "range",
+    "node",
+    "javascript",
+    "min",
+    "max",
+    "step"
+  ],
+  "author": "Brandon Nozaki Miller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RIAEvangelist/js-range/issues"
+  },
+  "homepage": "https://github.com/RIAEvangelist/js-range#readme"
+}
