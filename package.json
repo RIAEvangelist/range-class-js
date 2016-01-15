@@ -5,11 +5,14 @@
   "main": "Range.js",
   "dependencies": {},
   "devDependencies": {
-        "istanbul": "^0.4.2",
-        "jasmine": "^2.4.1"
+    "istanbul": "^0.4.2",
+    "jasmine": "^2.4.1",
+    "node-http-server": "^4.5.2"
   },
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "cover": "istanbul cover -x **/spec/** -dir ./spec/coverage jasmine",
+    "coverup": "cat ./spec/coverage/lcov.info | codacy-coverage"
   },
   "repository": {
     "type": "git",

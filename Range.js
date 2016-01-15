@@ -18,18 +18,23 @@ class Range{
             {
                 min:{
                     enumerable:true,
-                    get:getMin,
-                    set:getMin
+                    writable:true,
+                    value:0
                 },
                 max:{
                     enumerable:true,
-                    get:getMax,
-                    set:getMax
+                    writable:true,
+                    value:0
                 },
                 step:{
                     enumerable:true,
-                    get:getStep,
-                    set:getStep
+                    writable:true,
+                    value:1e-2
+                },
+                stepNormalizer:{
+                    enumerable:true,
+                    writable:true,
+                    value:1e10
                 },
                 isValid:{
                     enumerable:true,
@@ -44,39 +49,8 @@ class Range{
             }
         );
 
-        let min=0;
-        let max=0;
-        let step=0;
-
         if(range){
-            loadRange(range);
-        }
-
-        /**
-         * the Range min
-         * @method getMin
-         * @return {Number} Range.min
-         */
-        function getMin(){
-            return min;
-        }
-
-        /**
-         * the Range step
-         * @method getStep
-         * @return {Number} Range.step
-         */
-        function getStep(){
-            return step;
-        }
-
-        /**
-         * the Range max
-         * @method getMax
-         * @return {Number} Range.max
-         */
-        function getMax(){
-            return max;
+            this.load(range);
         }
 
         /**
@@ -123,9 +97,9 @@ class Range{
                 throw err;
             }
 
-            min=range.min;
-            max=range.max;
-            step=range.step;
+            this.min=range.min;
+            this.max=range.max;
+            this.step=range.step;
 
             return true;
         }
@@ -140,18 +114,15 @@ class Range{
  */
 function checkValidValue(value){
     let err;
-    if(!isNaN(value) && typeof value !== 'number'){
-        err= new TypeError(
-            getTypeError(0,value,value)
-        );
-        throw err;
+    if(isNaN(value) || typeof value !== 'number'){
+        return false;
     }
     return(
-        value<this.max
-        && value>this.min
+        value<=this.max
+        && value>=this.min
         && (
-            Math.round(this.value*1e16) - Math.round(this.min*1e16)
-        ) % Math.round(this.step*1e16) == 0
+            Math.round(value*this.stepNormalizer) - Math.round(this.min*this.stepNormalizer)
+        ) % Math.round(this.step*this.stepNormalizer) == 0
     );
 }
 
