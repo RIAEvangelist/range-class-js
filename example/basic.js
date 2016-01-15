@@ -4,9 +4,12 @@ const Range=require(`${__dirname}/../Range.js`);
 const util=require('util');
 
 const myRange=new Range;
-myRange.min=0;
-myRange.max=3;
-myRange.step=1;
+const rangeObject={
+    min:0,
+    max:3,
+    step:1
+};
+myRange.load(rangeObject);
 
 console.log(util.inspect(myRange,{depth:3,colors:true}),'\n');
 
