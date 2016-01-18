@@ -4,11 +4,39 @@ const util=require('util');
 
 /**
  * Range Class
+ *
+ * @example
+ *
+ * const Range=require('range-class-js');
+ *
+ * const range1=new Range;
+ * range1.min=0;
+ * range1.max=100;
+ * range1.step=10;
+ *
+ * const range2=new Range;
+ * range2.load(
+ * 		{
+ * 			min:0,
+ * 			max:50,
+ * 			step:5
+ * 		}
+ * );
+ *
+ * const range3=new Range(
+ * 		{
+ * 			min:0,
+ * 			max:10,
+ * 			step:1
+ * 		}
+ * );
+ *
  */
 class Range{
     /**
-     * [constructor description]
-     * @method constructor
+     * creates a new range instance
+     *
+     * @constructor
      * @param  {Object}    range Object containing min max and step
      * @return {Range}          class to handle valid range and step for values
      */
@@ -16,31 +44,101 @@ class Range{
         Object.defineProperties(
             this,
             {
+                /**
+                 * range min, set via load method or directly
+                 * @memberof Range
+                 * @type {Number}
+                 */
                 min:{
                     enumerable:true,
                     writable:true,
                     value:0
                 },
+                /**
+                 * range max, set via load method or directly
+                 * @memberof Range
+                 * @type {Number}
+                 */
                 max:{
                     enumerable:true,
                     writable:true,
                     value:0
                 },
+                /**
+                 * range step, set via load method or directly
+                 * @memberof Range
+                 * @default 1e-2 (0.01)
+                 * @type {Number}
+                 */
                 step:{
                     enumerable:true,
                     writable:true,
                     value:1e-2
                 },
+                /**
+                 * used to normalize values and steps during valid calculations
+                 * @memberof Range
+                 * @default 1e10
+                 * @type {Number}
+                 */
                 stepNormalizer:{
                     enumerable:true,
                     writable:true,
                     value:1e10
                 },
+                /**
+                 * checks if number is valid in range with given step
+                 *
+                 * @example
+                 *
+                 * const Range=require('range-class-js');                *
+                 *
+                 * const range=new Range;
+                 * range.load(
+                 *     {
+                 *         min:0,
+                 *         max:5,
+                 *         step:1
+                 *     }
+                 * );
+                 *
+                 * let valid=range.isValid(1.5);
+                 * //valid===false
+                 *
+                 * valid=range.isValid(2);
+                 * //valid=== true
+                 *
+                 * @protected
+                 * @method Range.isValid
+                 * @param {Number} Number to check against range and step
+                 * @returns {Boolean} Number is valid value in range with given step
+                 */
                 isValid:{
                     enumerable:true,
                     writable:false,
                     value:checkValidValue
                 },
+                /**
+                * converts an Object into a Range and checks validity
+                *
+                * @example
+                *
+                * const Range=require('range-class-js');                *
+                *
+                * const range=new Range;
+                * range.load(
+                *     {
+                *         min:0,
+                *         max:5,
+                *         step:0.05
+                *     }
+                * );
+                *
+                * @method Range.load
+                * @protected
+                * @param  {Object}  range the range values
+                * @return {Boolean}        success
+                 */
                 load:{
                     enumerable:true,
                     writable:false,
@@ -56,6 +154,7 @@ class Range{
         /**
          * converts an Object into a Range and checks validity
          * @method loadRange
+         * @private
          * @param  {Object}  range the range values
          * @return {Boolean}        success
          */
@@ -109,6 +208,7 @@ class Range{
 /**
  * checks if value is valid for given range and step
  * @method checkValidValue
+ * @private
  * @param  {Number}        value proposed value
  * @return {Boolean}              value isValid
  */
@@ -129,6 +229,7 @@ function checkValidValue(value){
 /**
  * [getTypeError description]
  * @method getTypeError
+ * @private
  * @param  {Any}     expects example expectation
  * @param  {Any}     value   offending value
  * @param  {Any}     from   offending values containing object
