@@ -1,6 +1,14 @@
 <a name="Range"></a>
 ## Range
+# range-class-js
+
 Range Class
+
+This module is an ES6 Javascript class for creating, handling, and validating ranges with steps. You can use it in node, the browser via browserify or webpack, React or any other commanjs implementation.
+
+` npm install range-class-js `
+
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/0be5815028584112a73f12606c1f08aa)](https://www.codacy.com/app/RIAEvangelist/range-class-js) [![Codacy Badge](https://api.codacy.com/project/badge/coverage/0be5815028584112a73f12606c1f08aa)](https://www.codacy.com/app/RIAEvangelist/range-class-js)
 
 **Kind**: global class  
 
@@ -84,7 +92,7 @@ checks if number is valid in range with given step
 
 **Example**  
 ```javascript
-const Range=require('range-class-js');                *
+const Range=require('range-class-js');
 
 const range=new Range;
 range.load(
@@ -115,7 +123,7 @@ converts an Object into a Range and checks validity
 
 **Example**  
 ```javascript
-const Range=require('range-class-js');                *
+const Range=require('range-class-js');
 
 const range=new Range;
 range.load(
