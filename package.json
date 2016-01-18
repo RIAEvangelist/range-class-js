@@ -14,6 +14,7 @@
   "scripts": {
     "test": "jasmine",
     "cover": "istanbul cover -x **/spec/** -dir ./spec/coverage jasmine",
+    "coverup": ". ../.codacy/.range-class-js&& cat ./spec/coverage/lcov.info | codacy-coverage",
     "docs": "jsdoc2md -h&& jsdoc2md -l javascript -g none -m none *.js > README.md"
   },
   "repository": {
