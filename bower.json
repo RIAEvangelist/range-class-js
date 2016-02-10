@@ -1,0 +1,32 @@
+{
+  "name": "range-class-js",
+  "description": "Javascript Range min, max, and step validation",
+  "main": "Range.js",
+  "authors": [
+    "Brandon Nozaki Miller"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "range",
+    "node",
+    "javascript",
+    "react",
+    "commonjs",
+    "min",
+    "max",
+    "step"
+  ],
+  "homepage": "https://github.com/RIAEvangelist/js-range",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
